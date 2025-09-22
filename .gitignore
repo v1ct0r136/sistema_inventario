@@ -4,3 +4,4 @@ venv/
 Thumbs.db
 _pycache__/
 *.pyc
+.pytest_cache/

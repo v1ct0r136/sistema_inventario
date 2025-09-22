@@ -2,7 +2,6 @@ from models import Producto
 from database import SessionLocal
 
 
-
 def create_product(nombre: str, descripcion: str, categoria: str, precio: float, stock: int):
 
     db = SessionLocal()
@@ -33,6 +32,8 @@ def get_product_by_category(categoria: str):
         return products
     finally:
         db.close()
+
+
 
 
 
@@ -75,42 +76,3 @@ def update_product(id: int, nombre_actualizar: str, descripcion_actualizar: str,
         db.close
         
 
-
-# TESTING THE FUNCTION (CREATE)
-producto_creado = create_product(
-    nombre="Estufa",
-    descripcion="Estufa electrica",
-    categoria="Electrodomesticos",
-    precio=1500.00,
-    stock=50
-)
-print(f"Producto creado: {producto_creado.nombre} con ID {producto_creado.id}")
-
-
-
-# TESTING THE FUNCTION (GET)
-
-products = get_product_by_category("Electrodomesticos")
-
-for p in products:
-    print(p.id, p.nombre, p.descripcion, p.categoria)
-
-
-
-
-# TESTING THE FUNCTION (DELETE)
-
-product_eliminar = delete_product(2, Producto.nombre, Producto.categoria)
-
-
-
-# TESTING THE FUNCTION (UPDATE)
-
-producto_actualizado = update_product(
-    id= 1,
-    nombre_actualizar = "Moto",
-    descripcion_actualizar = "250CC",
-    categoria_actualizar = "Vehiculo",
-    precio_actualizar = 10000000,
-    stock_actualizar = 1
-)
